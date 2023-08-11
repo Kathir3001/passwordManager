@@ -1,4 +1,4 @@
-import PasswordManager from './components/PasswordManager'
+import PasswordManager from './PasswordManager'
 import './App.css'
 
 const App = () => <PasswordManager />

@@ -1,44 +1,43 @@
 import './index.css'
 
 const PasswordItem = props => {
-  const {itemDetails, onDeleteItem, isChecked} = props
-  const {id, websiteInput, passwordInput, usernameInput} = itemDetails
+  const {item, showPasswords, handleDeletePassword} = props
+  const {id, website, username, password, initialColor} = item
+  const initialLetter = username.slice(0, 1)
 
-  const onClickDelete = () => {
-    onDeleteItem(id)
+  const deletePassword = () => {
+    handleDeletePassword(id)
   }
-
-  const passwordItem = isChecked ? (
-    <p className="para">{passwordInput}</p>
-  ) : (
-    <img
-      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
-      alt="stars"
-      className="stars-image"
-    />
-  )
   return (
-    <li className="list-item-container">
-      <div className="initial-section">s</div>
-      <div className="text-cont">
-        <p className="heading">{websiteInput}</p>
-        <p className="para">{usernameInput}</p>
-        <p>{passwordItem}</p>
+    <li className="list-item">
+      <div className="details-container">
+        <h1 className={`initialLetter ${initialColor}`}>{initialLetter}</h1>
+        <div>
+          <p className="li-website">{website}</p>
+          <p className="li-username">{username}</p>
+          {showPasswords ? (
+            <p className="li-password">{password}</p>
+          ) : (
+            <img
+              className="stars-img"
+              alt="stars"
+              src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+            />
+          )}
+        </div>
       </div>
-      <div className="delete-container">
-        <button
-          className="delete-button"
-          type="button"
-          data-testid="delete"
-          onClick={onClickDelete}
-        >
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
-            alt="delete"
-            className="delete-icon"
-          />
-        </button>
-      </div>
+      <button
+        data-testid="delete"
+        className="delete-btn"
+        type="button"
+        onClick={deletePassword}
+      >
+        <img
+          className="delete-img"
+          alt="delete"
+          src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+        />
+      </button>
     </li>
   )
 }
